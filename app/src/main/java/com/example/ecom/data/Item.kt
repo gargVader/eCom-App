@@ -1,4 +1,7 @@
-package com.example.ecom
+package com.example.ecom.data
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /**
  * {
@@ -13,8 +16,9 @@ package com.example.ecom
     "imageUrl": ""
   }
  */
+@Entity(tableName = "item_table")
 data class Item(val name:String,
-                val id:Int,
+                @PrimaryKey(autoGenerate = false) val id:Int,
                 val synonyms:String,
                 val brand:String,
                 val price:Int,

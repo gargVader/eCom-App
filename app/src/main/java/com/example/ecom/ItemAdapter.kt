@@ -1,8 +1,6 @@
 package com.example.ecom
 
 import android.app.Activity
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
+import com.example.ecom.data.Item
 
-class ItemAdapter(val itemList: List<Item>, val mActivity:Activity) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class ItemAdapter(var mItemList: List<Item>, val mActivity:Activity) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     
     val TAG = "Ecom"
     
@@ -27,45 +21,23 @@ class ItemAdapter(val itemList: List<Item>, val mActivity:Activity) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val currentItem = itemList[position]
+        val currentItem = mItemList[position]
         holder.name.text = currentItem.name
         holder.brand.text = currentItem.brand
         holder.price.text = "Rs. " + currentItem.price.toString()
         holder.size.text = currentItem.sizeInt.toString() + " " + currentItem.unit
-        Log.d("Ecom", "onBindViewHolder: "+getImageURL(currentItem.name))
-//        Glide.with(mActivity)
-//            .load(getImageURL(currentItem.name))
-//            .placeholder(R.drawable.placeholder)
-//            .listener(object : RequestListener<Drawable>{
-//                override fun onLoadFailed(
-//                    e: GlideException?,
-//                    model: Any?,
-//                    target: Target<Drawable>?,
-//                    isFirstResource: Boolean
-//                ): Boolean {
-//                    Log.d(TAG, "onLoadFailed: "+e.toString())
-//                    return true
-//                }
-//
-//                override fun onResourceReady(
-//                    resource: Drawable?,
-//                    model: Any?,
-//                    target: Target<Drawable>?,
-//                    dataSource: DataSource?,
-//                    isFirstResource: Boolean
-//                ): Boolean {
-//                    Log.d(TAG, "onResourceReady: ")
-//                    return true
-//                }
-//
-//            })
-//            .dontAnimate()
-//            .into(holder.imageView)
+
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return mItemList.size
     }
+
+    public fun setData(itemList: List<Item>){
+        mItemList = itemList
+        notifyDataSetChanged()
+    }
+
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
