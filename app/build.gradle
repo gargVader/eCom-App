@@ -69,5 +69,8 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.1"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
 
+    // Slang
+    implementation 'in.slanglabs.assistants:slang-retail-assistant:5.0.0'
+
 
 }

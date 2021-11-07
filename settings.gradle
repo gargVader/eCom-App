@@ -4,6 +4,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            url "http://maven.slanglabs.in:8080/artifactory/gradle-release"
+            allowInsecureProtocol = true
+        }
     }
 }
 rootProject.name = "Ecom"
