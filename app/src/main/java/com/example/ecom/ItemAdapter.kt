@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.ecom.data.Item
 
 class ItemAdapter(var mItemList: List<Item>, val mActivity:Activity) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
@@ -26,7 +27,7 @@ class ItemAdapter(var mItemList: List<Item>, val mActivity:Activity) : RecyclerV
         holder.brand.text = currentItem.brand
         holder.price.text = "Rs. " + currentItem.price.toString()
         holder.size.text = currentItem.sizeInt.toString() + " " + currentItem.unit
-
+        Glide.with(mActivity).load(getImageURL(currentItem.name)).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +46,7 @@ class ItemAdapter(var mItemList: List<Item>, val mActivity:Activity) : RecyclerV
         val price: TextView = itemView.findViewById(R.id.price)
         val size: TextView = itemView.findViewById(R.id.size)
         val imageView: ImageView = itemView.findViewById(R.id.image)
+
     }
 
     private fun getImageURL(name: String): String {
